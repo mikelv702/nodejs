@@ -34,7 +34,7 @@ app.get('/', async (req, res) => {
   });
 
 
-  var jwtCheck = jwt({
+var jwtCheck = jwt({
     secret: jwks.expressJwtSecret({
         cache: true,
         rateLimit: true,
@@ -54,7 +54,7 @@ app.post('/', async (req, res) => {
     res.send({ message: 'New ad inserted.' });
   });
   
-  // endpoint to delete an ad
+// endpoint to delete an ad
 app.delete('/:id', async (req, res) => {
     await deleteAd(req.params.id);
     res.send({ message: 'Ad removed.' });
@@ -69,7 +69,11 @@ app.put('/:id', async (req, res) => {
   
 
 startDatabase().then(async () => {
-    await insertAd({title: 'Hello, now from the in-memory database!'});
+    await insertAd({title: 'Hello, now from the in-memory database!', 
+                    description: 'something new can be added',
+                    text: 'update the text of this here'
+                    
+});
   
 
 // starting the server
